@@ -46,14 +46,17 @@ function doPost(e){
     * imageUrlに、任意のAV女優の画像を挿入しています。
    */
    imageEndPoint = "http://eropalace21.com/wordpress/wp-content/uploads/2016/01/sakuramana_thumb.jpg" //検証用の画像
- } else {
+ } else if (json.events[0].type == "message"){
    /*
     * Lineからメッセージが送られたときの処理です
     * URLを取得します
    */
-   var json = JSON.parse(e.postData.contents);
-   reply_token= json.events[0].replyToken;
-   imageEndPoint = json.events[0].message.text;    
+   var json = JSON.parse(e.postData.contents)
+   reply_token= json.events[0].replyToken
+   imageEndPoint = json.events[0].message.text       
+ } else if (json.events[0].type == "image") {
+   id = json.events[0].id
+   imageEndPoint = "https://api-data.line.me/v2/bot/message/"+ id +"/content"
  }
    Logger.log("以下のURLから、画像を取得します: " + imageEndPoint)
    console.log(imageEndPoint)
