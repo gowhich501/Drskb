@@ -45,13 +45,7 @@ def makePerson(name,profile):
    return personId
 
 def addFaceToPerson(personId, imageUrl):
-  """
-  PersonにFaceを追加することができます。
-  params:
-      - personId:
-      - imageUrl:personに追加したい画像のURL
-  return:
-  """
+
   if personId != None:
       end_point = BASE_URL + "persongroups/" + GROUP_NAME + "/persons/" + personId  + "/persistedFaces"
       print(end_point)
@@ -163,15 +157,19 @@ if __name__ == '__main__':
 """
   df = pd.read_csv("idleList.csv",index_col=0)
   df2 = pd.read_csv("learning-default.csv", index_col=0)
-  for i, row in df.iterrows(): #,name,kana,image,dmmimage,roman
+  for i, row in df.iterrows(): # name,image,profile
       name = row["name"]
       image = row["image"]
       profile = row["profile"]
       #personを登録し、personIdを返す
       personId = makePerson(name, profile)
-      #personIdをもとに、そのpersonにスクレイピングした画像とDMMの画像を追加する
+      #personIdをもとに、そのpersonにスクレイピングした画像とプロフィールのURLを追加する
       addFaceToPerson(personId, image)
       se = pd.Series([name,image,profile,personId],["name", "image", "profile","personId"])
       df2 = df2.append(se,ignore_index=True)
       print (df2)
 """
+
+
+
+
