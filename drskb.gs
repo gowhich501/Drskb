@@ -28,7 +28,7 @@ function doPost(e){
    /*
     * debug用の処理です
     */
-   imageEndPoint = "https://s.akb48.co.jp/sousenkyo2017/70004.jpg"
+   imageEndPoint = "https://www.akb48.co.jp/sousenkyo2017/70004.jpg"
  } else　{
    /*
     * Lineからメッセージが送られたときの処理です
@@ -38,6 +38,7 @@ function doPost(e){
    reply_token= json.events[0].replyToken
    console.log("reply_token: " + reply_token)
    imageEndPoint = json.events[0].message.text       
+
  }
    console.log("以下のURLから、画像を取得します: " + imageEndPoint)
    console.log(imageEndPoint)
